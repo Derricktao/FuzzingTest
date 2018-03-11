@@ -27,6 +27,7 @@ char* getfield(char* line, int Users) {
 int get_name_index(char* line){
         char* tok;
         int Users  = 0;
+
         for (tok = strtok(line, ","); tok!=NULL; tok = strtok(NULL, ",\n")) {
                 while (tok != NULL) {
                         if (strcmp(tok, "\"name\"") == 0) {
@@ -82,7 +83,7 @@ void sort_by_frequency(char** names, int size){
                         }
         }
         //print final answer
-        for(int i = size-10; i < size ; i++) {
+        for(int i = size-1; i >=size-10 ; i--) {
                         printf("%s %d\n", Users[i].name, Users[i].frequency);
         }
 }
