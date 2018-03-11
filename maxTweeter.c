@@ -60,8 +60,9 @@ void sort_by_frequency(char** names, int size){
                 Users[i].frequency = 0;
                 Users[i].name = names[i];
         }
+        //first sort those names alphabetically
         qsort(Users, size, sizeof(tweeter), alphabetically);
-
+        //then count the frequency of each name
         Users[0].frequency = 1;
         for (int i = 1; i<size; ++i)  {
                 if(strcmp(Users[i].name,Users[i-1].name) == 0) {
@@ -71,15 +72,16 @@ void sort_by_frequency(char** names, int size){
                 }
                 else Users[i].frequency = 1;
         }
-
+        //then sort those names based on their frequency
         qsort(Users, size, sizeof(tweeter), frequencily);
-
+        //filter those who has frequency -1
         for(int i = size-1, index = 0; i >= 0; --i) {
                 if(Users[i].frequency != -1)
                         for(int j=0; j<Users[i].frequency; ++j) {
                                 names[index++] = Users[i].name;
                         }
         }
+        //print final answer
         for(int i = size-10; i < size ; i++) {
                         printf("%s %d\n", Users[i].name, Users[i].frequency);
         }
